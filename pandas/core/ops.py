@@ -596,6 +596,201 @@ Returns
 Panel
 """
 
+_div_doc_FRAME = """
+>>> df1 = pd.DataFrame({'a': [1, 2, 3, 4], 'b': [5, 6, 7, np.nan]},
+                       index=[1, 2, 3, 4])
+
+>>> df2 = pd.DataFrame({'a': [2, 3, np.nan, 2.01], 'b': [5, np.nan, 3, np.nan],
+                        'c' : [2, 3, 4, 6]}, index=[1, 2, 3, 4])
+
+>>> df1.div(df2)
+    a        b        c
+1   0.500000 1.000000 NaN
+2   0.666667 NaN      NaN
+3   NaN      2.333333 NaN
+4   1.990050 NaN      NaN
+
+>>> df1.div(df2, fill=2)
+    a        b        c
+1   0.500000 1.000000 NaN
+2   0.666667 NaN      NaN
+3   NaN      2.333333 NaN
+4   1.990050 NaN      NaN
+
+"""
+
+_div_doc_SERIES = """
+>>> df1 = pd.Series([1, 2, 3, 4], index=[1, 2, 3, 4])
+
+>>> df2 = pd.Series([2, 3, 5, 4], index=[1, 2, 3, 4])
+
+>>> df1.div(df2)
+
+1    0.500000
+2    0.666667
+3    0.600000
+4    1.000000
+dtype: float64
+
+"""
+
+_rdiv_doc_FRAME = """
+>>> df1 = pd.DataFrame({'a': [1, 2, 3, 4], 'b': [5, 6, 7, np.nan]},
+                       index=[1, 2, 3, 4])
+
+>>> df2 = pd.DataFrame({'a': [2, 3, np.nan, 2.01], 'b': [5, np.nan, 3, np.nan],
+                        'c' : [2, 3, 4, 6]}, index=[1, 2, 3, 4])
+>>> df1.rdiv(df2)
+
+    a       b         c
+1   2.0000  1.000000  NaN
+2   1.5000  NaN       NaN
+3   NaN     0.428571  NaN
+4   0.5025  NaN       NaN
+
+"""
+
+_rdiv_doc_SERIES = """
+>>> df1 = pd.Series([1, 2, 3, 4], index=[1, 2, 3, 4])
+
+>>> df2 = pd.Series([2, 3, 5, 4], index=[1, 2, 3, 4])
+
+>>> df1.rdiv(df2)
+
+1    0.500000
+2    0.666667
+3    0.600000
+4    1.000000
+dtype: float64
+
+"""
+
+_truediv_doc_FRAME = """
+>>> df1 = pd.DataFrame({'a': [1, 2, 3, 4], 'b': [5, 6, 7, np.nan]},
+                       index=[1, 2, 3, 4])
+
+>>> df2 = pd.DataFrame({'a': [2, 3, np.nan, 2.01], 'b': [5, np.nan, 3, np.nan],
+                        'c' : [2, 3, 4, 6]}, index=[1, 2, 3, 4])
+
+>> df1.truediv(df2)
+    a        b        c
+1   0.500000 1.000000 NaN
+2   0.666667 NaN      NaN
+3   NaN      2.333333 NaN
+4   1.990050 NaN      NaN
+
+"""
+
+_truediv_doc_SERIES = """
+>>> df1 = pd.Series([1, 2, 3, 4], index=[1, 2, 3, 4])
+
+>>> df2 = pd.Series([2, 3, 5, 4], index=[1, 2, 3, 4])
+
+>>> df1.rtruediv(df2)
+
+1    0.500000
+2    0.666667
+3    0.600000
+4    1.000000
+dtype: float64
+
+"""
+
+_rtruediv_doc_FRAME = """
+>>> df1 = pd.DataFrame({'a': [1, 2, 3, 4], 'b': [5, 6, 7, np.nan]},
+                       index=[1, 2, 3, 4])
+
+>>> df2 = pd.DataFrame({'a': [2, 3, np.nan, 2.01], 'b': [5, np.nan, 3, np.nan],
+                        'c' : [2, 3, 4, 6]}, index=[1, 2, 3, 4])
+>>> df1.rtruediv(df2)
+
+    a       b        c
+1   2.0000  1.000000 NaN
+2   1.5000  NaN      NaN
+3   NaN     0.428571 NaN
+4   0.5025  NaN      NaN
+
+"""
+
+_rtruediv_doc_SERIES = """
+>>> df1 = pd.Series([1, 2, 3, 4], index=[1, 2, 3, 4])
+
+>>> df2 = pd.Series([2, 3, 5, 4], index=[1, 2, 3, 4])
+
+>>> df1.rtruediv(df2)
+
+1    2.000000
+2    1.500000
+3    1.666667
+4    1.000000
+dtype: float64
+
+
+"""
+
+_floordiv_doc_FRAME = """
+>>> df1 = pd.DataFrame({'a': [1, 2, 3, 4], 'b': [5, 6, 7, np.nan]},
+                       index=[1, 2, 3, 4])
+
+>>> df2 = pd.DataFrame({'a': [2, 3, np.nan, 2.01], 'b': [5, np.nan, 3, np.nan],
+                        'c' : [2, 3, 4, 6]}, index=[1, 2, 3, 4])
+
+>>> df1.floordiv(df2)
+
+    a   b   c
+1   0.0 1.0 NaN
+2   0.0 NaN NaN
+3   NaN 2.0 NaN
+4   1.0 NaN NaN
+
+"""
+
+_floordiv_doc_SERIES = """
+>>> df1 = pd.Series([1, 2, 3, 4], index=[1, 2, 3, 4])
+
+>>> df2 = pd.Series([2, 3, 5, 4], index=[1, 2, 3, 4])
+
+>>> df1.floordiv(df2)
+
+1    0
+2    0
+3    0
+4    1
+dtype: int64
+
+"""
+
+_rfloordiv_doc_FRAME = """
+>>> df1 = pd.DataFrame({'a': [1, 2, 3, 4], 'b': [5, 6, 7, np.nan]},
+                       index=[1, 2, 3, 4])
+
+>>> df2 = pd.DataFrame({'a': [2, 3, np.nan, 2.01], 'b': [5, np.nan, 3, np.nan],
+                        'c' : [2, 3, 4, 6]}, index=[1, 2, 3, 4])
+
+>>> df1.rfloordiv(df2)
+    a   b   c
+1   2.0 1.0 NaN
+2   1.0 NaN NaN
+3   NaN 0.0 NaN
+4   0.0 NaN NaN
+
+"""
+
+_rfloordiv_doc_SERIES = """
+>>> df1 = pd.Series([1, 2, 3, 4], index=[1, 2, 3, 4])
+
+>>> df2 = pd.Series([2, 3, 5, 4], index=[1, 2, 3, 4])
+
+>>> df1.rfloordiv(df2)
+
+1    2
+2    1
+3    1
+4    1
+dtype: int64
+
+"""
+
 
 def _make_flex_doc(op_name, typ):
     """
